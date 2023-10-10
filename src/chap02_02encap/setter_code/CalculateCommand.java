@@ -9,23 +9,32 @@ public class CalculateCommand {
     private int num2;
 
 
-    /*
-    CalculateCommand 객체에 실질적인 연산에 필요한 모든 자료가 저장되므로
-    연산에 필요한 정보를 생성하는 단계에서 검사까지 해버리면 됨
-     */
-    public CalculateCommand(CalculateType calculateType, int num1, int num2) {
-       // 생성단계에서 검증에 실패했다면, Unchecked Exception 을 사용하는것이 더 좋음
-        if(calculateType == null)
+    public int getCalculateResult() {
+        CalculateType calculateType = this.calculateType;
+        int num1 = this.num1;
+        int num2 = this.num2;
+
+        // 생성단계에서 검증에 실패했다면, Unchecked Exception 을 사용하는것이 더 좋음
+        if (calculateType == null)
             throw new RuntimeException("CalculateType은 필수 값 입니다.");
-        if(calculateType == CalculateType.DIVIDE && num2 == 0)
+        if (calculateType == CalculateType.DIVIDE && num2 == 0)
             throw new RuntimeException("0 으로 나눌 수 없습니다.");
 
-        this.calculateType = calculateType;
-        this.num1 = num1;
-        this.num2 = num2;
+        // 생성자에서 이미 유효성 검사가 완료되었고, setter가 없으므로 값이 변하지 않는다는것까지 보장되므로 바로 연산
+        int result = calculateType.calculate(num1, num2);
+
+        return result;
     }
 
-    public CalculateType getCalculateType(){ return calculateType; }
-    public int getNum1(){ return num1; }
-    public int getNum2(){ return num2; }
+    public void setCalculateType(CalculateType calculateType) {
+        this.calculateType = calculateType;
+    }
+
+    public void setNum1(int num1) {
+        this.num1 = num1;
+    }
+
+    public void setNum2(int num2) {
+        this.num2 = num2;
+    }
 }
