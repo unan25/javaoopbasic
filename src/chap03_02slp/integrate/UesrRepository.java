@@ -4,9 +4,7 @@ package chap03_02slp.integrate;
 public class UesrRepository implements Repository {
 
     @Override
-    public void createUser() {
-
-    }
+    public void createUser() { }
 
     @Override
     public User findUserById(Long id) {
@@ -16,9 +14,7 @@ public class UesrRepository implements Repository {
 
     // 쓰지도 않을 Article 관련 로직 구현
     @Override
-    public void createArticle() {
-
-    }
+    public void createArticle() { }
 
     // 쓰지도 않을 Article 관련 로직 구현
     @Override
